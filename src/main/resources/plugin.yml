@@ -1,0 +1,12 @@
+name: ExtraEndPortals
+version: '1.0'
+main: me.twostinkysocks.extraendportals.ExtraEndPortals
+api-version: 1.20
+commands:
+  endportals:
+    permission: endportals.reload
+    usage: /<command>
+permissions:
+  endportals.reload:
+    description: Reload the plugin
+    default: false
