@@ -1,7 +1,8 @@
 name: ExtraEndPortals
-version: '1.0'
+version: '1.1'
 main: me.twostinkysocks.extraendportals.ExtraEndPortals
-api-version: 1.20
+author: 2stinkysocks
+api-version: 1.21.4
 commands:
   endportals:
     permission: endportals.reload
