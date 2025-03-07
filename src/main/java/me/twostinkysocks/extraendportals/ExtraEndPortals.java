@@ -1,11 +1,11 @@
 package me.twostinkysocks.extraendportals;
 
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.StructureTags;
 import org.bukkit.*;
-import org.bukkit.block.data.type.EndPortalFrame;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -61,15 +61,15 @@ public final class ExtraEndPortals extends JavaPlugin implements Listener, Comma
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(label.equals("endportals")) {
             if(!sender.hasPermission("endportals.reload")) {
-                sender.sendMessage(ChatColor.RED + "You don't have permission!");
+                sender.sendMessage(NamedTextColor.RED + "You don't have permission!");
                 return true;
             }
             if(args.length == 0 || !args[0].equals("reload")) {
-                sender.sendMessage(ChatColor.RED + "Usage: /endportals reload");
+                sender.sendMessage(NamedTextColor.RED + "Usage: /endportals reload");
                 return true;
             }
             load();
-            sender.sendMessage(ChatColor.GREEN + "Reloaded ExtraEndPortals");
+            sender.sendMessage(NamedTextColor.GREEN + "Reloaded ExtraEndPortals");
         }
         return true;
     }
@@ -78,7 +78,7 @@ public final class ExtraEndPortals extends JavaPlugin implements Listener, Comma
     public void onEye(PlayerInteractEvent e) {
         // if you click the air, or you click a block that's either not an end portal, or is a filled end portal, then do the thing
         if(e.getItem() == null || (e.getItem().getType() != Material.ENDER_EYE)) return;
-        if(e.getAction() == Action.RIGHT_CLICK_AIR || (e.getAction() == Action.RIGHT_CLICK_BLOCK && (e.getClickedBlock().getType() != Material.END_PORTAL_FRAME || ((EndPortalFrame)e.getClickedBlock()).hasEye()))) {
+        if(e.getAction() == Action.RIGHT_CLICK_AIR || (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getType() != Material.END_PORTAL_FRAME)) {
             Player p = e.getPlayer();
             e.setCancelled(true);
             e.setUseItemInHand(Event.Result.DENY);
